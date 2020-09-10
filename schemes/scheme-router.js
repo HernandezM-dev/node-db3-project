@@ -79,13 +79,13 @@ router.post('/:id/steps', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const changes = req.body;
-
+  console.log("this is changes 1", changes)
   Schemes.findById(id)
   .then(scheme => {
     if (scheme) {
-      Schemes.update(changes, id)
+      Schemes.update(id, changes)
       .then(updatedScheme => {
         res.json(updatedScheme);
       });
